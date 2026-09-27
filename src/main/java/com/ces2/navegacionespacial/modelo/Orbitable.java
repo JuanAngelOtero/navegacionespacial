@@ -1,6 +1,8 @@
 package com.ces2.navegacionespacial.modelo;
 
-public interface Orbitable extends Despegable {
+import java.util.List;
 
-    String orbitar(Nave nave);
+public interface Orbitable {
+
+    String orbitar(List<Nave> naves);
 }

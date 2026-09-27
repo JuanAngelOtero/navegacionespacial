@@ -1,14 +1,19 @@
 package com.ces2.navegacionespacial.modelo;
 
+import java.util.List;
+
 public class NaveAlienijena implements NaveEspacial {
 
-    private final Nave nave;
-    private String galaxiaOrigen;
-    private String tipoTecnologia;
-    private int nivelSigilo;
+    private final String nombre;
+    private final List<Nave> naves;
+    private final String galaxiaOrigen;
+    private final String tipoTecnologia;
+    private final int nivelSigilo;
 
-    public NaveAlienijena(Nave nave, String galaxiaOrigen, String tipoTecnologia, int nivelSigilo) {
-        this.nave = nave;
+    public NaveAlienijena(String nombre, List<Nave> naves, String galaxiaOrigen,
+                           String tipoTecnologia, int nivelSigilo) {
+        this.nombre = nombre;
+        this.naves = naves;
         this.galaxiaOrigen = galaxiaOrigen;
         this.tipoTecnologia = tipoTecnologia;
         this.nivelSigilo = nivelSigilo;
@@ -20,29 +25,31 @@ public class NaveAlienijena implements NaveEspacial {
     }
 
     @Override
-    public String despegar(Nave nave) {
-        return "[NaveAlienijena] " + nave.getNombre() + " despega con antigravedad "
-                + tipoTecnologia + " desde la galaxia " + galaxiaOrigen
-                + " a " + nave.getVelocidadMaxima() + " km/s (combustible "
-                + nave.getNivelCombustible() + "%).";
+    public String despegar(List<Nave> naves) {
+        return "[NaveAlienijena] " + nombre + " prepara el despegue de " + naves.size()
+                + " nave(s) con tecnologia " + tipoTecnologia + " desde la galaxia " + galaxiaOrigen + ".";
     }
 
     @Override
-    public String orbitar(Nave nave) {
-        return "[NaveAlienijena] " + nave.getNombre() + " orbita " + nave.getPlanetaDestino()
-                + " en modo sigilo al " + nivelSigilo + "% sin ser detectada.";
+    public String orbitar(List<Nave> naves) {
+        return "[NaveAlienijena] " + nombre + " pone en orbita " + naves.size()
+                + " nave(s) en modo sigilo al " + nivelSigilo + "%.";
     }
 
     @Override
-    public String aterrizarEnPlaneta(Nave nave) {
-        return "[NaveAlienijena] " + nave.getNombre() + " (modelo " + nave.getModelo()
-                + ") aterriza en " + nave.getPlanetaDestino()
-                + " y estudia la superficie con sensores de " + galaxiaOrigen + ".";
+    public String aterrizarEnPlaneta(List<Nave> naves) {
+        return "[NaveAlienijena] " + nombre + " coordina el aterrizaje de " + naves.size()
+                + " nave(s) usando sensores de " + galaxiaOrigen + ".";
     }
 
     @Override
-    public Nave getNave() {
-        return nave;
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public List<Nave> getNaves() {
+        return naves;
     }
 
     @Override

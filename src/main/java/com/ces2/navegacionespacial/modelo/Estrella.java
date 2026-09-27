@@ -1,14 +1,19 @@
 package com.ces2.navegacionespacial.modelo;
 
+import java.util.List;
+
 public class Estrella implements NaveEspacial {
 
-    private final Nave nave;
-    private String tipoEspectral;
-    private double masasSolares;
-    private int temperaturaKelvin;
+    private final String nombre;
+    private final List<Nave> naves;
+    private final String tipoEspectral;
+    private final double masasSolares;
+    private final int temperaturaKelvin;
 
-    public Estrella(Nave nave, String tipoEspectral, double masasSolares, int temperaturaKelvin) {
-        this.nave = nave;
+    public Estrella(String nombre, List<Nave> naves, String tipoEspectral,
+                     double masasSolares, int temperaturaKelvin) {
+        this.nombre = nombre;
+        this.naves = naves;
         this.tipoEspectral = tipoEspectral;
         this.masasSolares = masasSolares;
         this.temperaturaKelvin = temperaturaKelvin;
@@ -20,28 +25,31 @@ public class Estrella implements NaveEspacial {
     }
 
     @Override
-    public String despegar(Nave nave) {
-        return "[Estrella] " + nave.getNombre() + " usa la gravedad de la estrella tipo "
-                + tipoEspectral + " como impulso para despegar a " + nave.getVelocidadMaxima()
-                + " km/s (combustible " + nave.getNivelCombustible() + "%).";
+    public String despegar(List<Nave> naves) {
+        return "[Estrella] " + nombre + " impulsa el despegue de " + naves.size()
+                + " nave(s) aprovechando su gravedad tipo " + tipoEspectral + ".";
     }
 
     @Override
-    public String orbitar(Nave nave) {
-        return "[Estrella] " + nave.getNombre() + " entra en orbita alrededor de la estrella de "
-                + masasSolares + " masas solares antes de seguir hacia " + nave.getPlanetaDestino() + ".";
+    public String orbitar(List<Nave> naves) {
+        return "[Estrella] " + nombre + " mantiene " + naves.size()
+                + " nave(s) orbitando alrededor de sus " + masasSolares + " masas solares.";
     }
 
     @Override
-    public String aterrizarEnPlaneta(Nave nave) {
-        return "[Estrella] " + nave.getNombre() + " (modelo " + nave.getModelo()
-                + ") no puede posarse en la estrella (" + temperaturaKelvin + " K) y desvia su ruta hacia "
-                + nave.getPlanetaDestino() + ".";
+    public String aterrizarEnPlaneta(List<Nave> naves) {
+        return "[Estrella] " + nombre + " desvia hacia un planeta cercano a " + naves.size()
+                + " nave(s), pues no pueden posarse en una superficie de " + temperaturaKelvin + " K.";
     }
 
     @Override
-    public Nave getNave() {
-        return nave;
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public List<Nave> getNaves() {
+        return naves;
     }
 
     @Override

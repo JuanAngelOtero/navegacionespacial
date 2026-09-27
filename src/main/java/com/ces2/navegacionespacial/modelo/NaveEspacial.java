@@ -1,8 +1,12 @@
 package com.ces2.navegacionespacial.modelo;
 
+import java.util.List;
+
 public interface NaveEspacial extends Despegable, Orbitable, Aterrizable {
 
-    Nave getNave();
+    String getNombre();
+
+    List<Nave> getNaves();
 
     String tipo();
 }

@@ -1,6 +1,8 @@
 package com.ces2.navegacionespacial.modelo;
 
-public interface Aterrizable extends Orbitable {
+import java.util.List;
 
-    String aterrizarEnPlaneta(Nave nave);
+public interface Aterrizable {
+
+    String aterrizarEnPlaneta(List<Nave> naves);
 }
